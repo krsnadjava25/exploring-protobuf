@@ -1,0 +1,30 @@
+syntax = "proto3";
+package expprotobuf;
+
+message Player {
+    int32 id = 1;
+    string username = 2;
+    bool is_banned = 3;
+
+    enum GameInput {
+        SCISSOR = 0;
+        STONE = 1;
+        PAPER = 2;
+    }
+
+    GameInput picked_input = 4;
+
+    message GameLog {
+        int32 game_id = 1;
+        bool is_lose = 2;
+        repeated GameInput player_choices = 3;
+        repeated GameInput enemy_choices = 4;
+    }
+
+    repeated GameLog games_played = 5;
+}
+
+message Game {
+    int32 id = 1;
+    repeated Player players = 2;
+}
